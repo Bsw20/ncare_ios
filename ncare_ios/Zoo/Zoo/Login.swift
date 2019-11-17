@@ -41,7 +41,7 @@ struct Login_page: View {
                         
                         
                         LogoView()
-                            .padding(.top, 30)
+                            .padding(.top, 10)
                             .padding(.bottom, 25)
                         
                         
@@ -73,7 +73,7 @@ struct Login_page: View {
                             
                             InputFieldView(input: $email, textfield_label: "Input your E-mail", image_name: "person", label: "E-mail")
                             
-                            InputFieldView(input: $password, textfield_label: "Input your password", image_name: "lock", label: "Password")
+                            SequreInputField(input: $password, textfield_label: "Input your password", image_name: "lock", label: "Password")
                             
                             HStack(spacing: 1) {
                                 Button(action: {
@@ -101,7 +101,8 @@ struct Login_page: View {
                             
                             InputFieldView(input: $email, textfield_label: "Input your E-mail", image_name: "person", label: "E-mail")
                              
-                            InputFieldView(input: $password,textfield_label: "Input your password", image_name: "lock", label: "Password")
+                            SequreInputField(input: $password,textfield_label: "Input your password", image_name: "lock", label: "Password")
+                            
                             
                             
                             
@@ -182,7 +183,30 @@ struct Login_page: View {
                 }
                 
             })
-            
+            self.socketData.on("auth:import_auth", callback: { (data, ack) in
+                
+                print("GOT ANSWER ON IMPORT AUTH")
+                
+                let b = data as!  [Dictionary<String, AnyObject>]
+                
+                print(b)
+                if b[0]["res"] as! Int == 0
+                {
+                    print("saving userdata to db")
+                    let user = b[0]["user"] as!  Dictionary<String, Any>
+                    defaults.set(user["id"], forKey: "id")
+                    defaults.set(user["token"], forKey: "token")
+                    defaults.set(user["nickname"], forKey: "nickname")
+                    defaults.set(user["email"], forKey: "email")
+                    
+                    self.success_auth = true
+                }
+                else
+                {
+                    print("ERROR IN IMPORTING AUTH")
+                    
+                }
+            })
             // if you are already loggined socket
             self.socketData.on("auth:import_auth", callback: { (data, ack) in
                 
@@ -197,7 +221,7 @@ struct Login_page: View {
                     defaults.set(user["id"], forKey: "id")
                     defaults.set(user["token"], forKey: "token")
                     defaults.set(user["nickname"], forKey: "nickname")
-                    
+                    defaults.set(user["email"], forKey: "email")
                     
                     self.success_auth = true
                 }
@@ -302,6 +326,56 @@ struct DismissingKeyboard: ViewModifier {
     }
 }
 
+
+struct SequreInputField: View{
+    @Binding var input: String
+    
+    var textfield_label: String
+    
+    var maincolor: Color = Color(red: 136 / 255, green: 177 / 255, blue: 83 / 255)
+    
+    var image_name: String
+    
+    var label: String
+    
+    var body: some View
+    {
+        ZStack{
+            
+            VStack(alignment: .leading, spacing: 0){
+                Group{
+                    HStack{
+                    Image(systemName: image_name)
+                        .resizable()
+                        .frame(width: 14, height: 16)
+                        .foregroundColor(maincolor)
+                    Text(label).padding(.leading, 8)
+                    }.padding(.top, 6)
+                }
+                
+                .padding(.leading, 32)
+                    
+            
+            
+            VStack {
+                
+                SecureField(textfield_label, text: $input)
+                .frame(height: 30)
+                .padding(.leading, 64)
+                .padding(.trailing, 32)
+                .padding(.bottom, 4)
+                    .opacity(0.7)
+                }
+            }
+            
+        }.overlay(
+            RoundedRectangle(cornerRadius: 5)
+                .stroke(Color.primary . opacity(0.1), lineWidth: 1)
+                .padding(.leading, 16)
+                .padding(.trailing, 16)
+        )
+    }
+}
 
 
 struct InputFieldView: View{

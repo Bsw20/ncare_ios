@@ -104,10 +104,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         return " "
     }
     
-    
-
-
-    
     @objc func longpress(gestureRecognizer: UIGestureRecognizer) {
 
     if gestureRecognizer.state == UIGestureRecognizer.State.began {
@@ -152,9 +148,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
                             title += placemark.thoroughfare! + " "
 
                         }
-
-
-
                     }
 
                 }
@@ -186,11 +179,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
  }
     
     
-    
-
-
-
- 
 extension MapViewController:MKMapViewDelegate{
  
  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{

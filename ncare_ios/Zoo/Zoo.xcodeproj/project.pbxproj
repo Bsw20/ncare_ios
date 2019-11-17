@@ -13,7 +13,8 @@
 		8008CC25237B39A300D2F1DE /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008CC24237B39A300D2F1DE /* Socket.swift */; };
 		8008CC27237B46AF00D2F1DE /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008CC26237B46AF00D2F1DE /* Root.swift */; };
 		806F7B42238068E500279AA2 /* RowsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806F7B41238068E500279AA2 /* RowsMap.swift */; };
-		806F7B4423807D5200279AA2 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806F7B4323807D5200279AA2 /* test.swift */; };
+		806F7B862380FC5000279AA2 /* DownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806F7B852380FC5000279AA2 /* DownMenu.swift */; };
+		806F7B88238103BC00279AA2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806F7B87238103BC00279AA2 /* ProfileView.swift */; };
 		80989BB0237C3FC000027439 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80989BAF237C3FC000027439 /* Feed.swift */; };
 		80CB0B4B2376B3EE0068285C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CB0B4A2376B3EE0068285C /* AppDelegate.swift */; };
 		80CB0B4D2376B3EE0068285C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CB0B4C2376B3EE0068285C /* SceneDelegate.swift */; };
@@ -56,8 +57,9 @@
 		8008CC24237B39A300D2F1DE /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 		8008CC26237B46AF00D2F1DE /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		806F7B41238068E500279AA2 /* RowsMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowsMap.swift; sourceTree = "<group>"; };
-		806F7B4323807D5200279AA2 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		806F7B842380DFDF00279AA2 /* Zoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Zoo.entitlements; sourceTree = "<group>"; };
+		806F7B852380FC5000279AA2 /* DownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownMenu.swift; sourceTree = "<group>"; };
+		806F7B87238103BC00279AA2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		80989BAF237C3FC000027439 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		80CB0B472376B3EE0068285C /* Zoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CB0B4A2376B3EE0068285C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,7 +166,8 @@
 				8008CC26237B46AF00D2F1DE /* Root.swift */,
 				80989BAF237C3FC000027439 /* Feed.swift */,
 				806F7B41238068E500279AA2 /* RowsMap.swift */,
-				806F7B4323807D5200279AA2 /* test.swift */,
+				806F7B852380FC5000279AA2 /* DownMenu.swift */,
+				806F7B87238103BC00279AA2 /* ProfileView.swift */,
 			);
 			path = Zoo;
 			sourceTree = "<group>";
@@ -432,9 +435,10 @@
 				80CB0B7E2376B4000068285C /* Map.swift in Sources */,
 				80989BB0237C3FC000027439 /* Feed.swift in Sources */,
 				80CB0B802376B49A0068285C /* MapView.swift in Sources */,
-				806F7B4423807D5200279AA2 /* test.swift in Sources */,
 				8008CC25237B39A300D2F1DE /* Socket.swift in Sources */,
+				806F7B862380FC5000279AA2 /* DownMenu.swift in Sources */,
 				80F65BF9237AE3320036BDD5 /* SwiftUIView.swift in Sources */,
+				806F7B88238103BC00279AA2 /* ProfileView.swift in Sources */,
 				80CB0B502376B3EE0068285C /* Zoo.xcdatamodeld in Sources */,
 				80CB0B4B2376B3EE0068285C /* AppDelegate.swift in Sources */,
 				8008CC27237B46AF00D2F1DE /* Root.swift in Sources */,

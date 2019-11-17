@@ -11,7 +11,10 @@ import SwiftUI
 struct Root: View {
     @EnvironmentObject var socketData: Socket
     var body: some View {
-        Login_page()
+        ZStack {
+            
+            Login_page()
+        }
         
     }
 }
