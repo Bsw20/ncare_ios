@@ -156,44 +156,59 @@ struct Login_page: View {
                 
             
             let defaults = UserDefaults.standard
-            print("appear")
-                self.socketData.on("connect", callback: { (data, ack) in
-                    print("YEYEYEYEYYEYEYEYYE")
-                })
+            
+            
+            defaults.removeObject(forKey: "latitude")
+            defaults.removeObject(forKey: "longitude")
+                
+            self.socketData.on(clientEvent: .statusChange, callback: { (data, ack) in
+                print("STATUS CHANGED")
+                print(type(of: data[0]))
+                let socketConnectionStatus: SocketIOStatus = data[0] as! SocketIOStatus
+                print(socketConnectionStatus.description)
+                
+                if (socketConnectionStatus.description  == "connected")
+                {
+                    // id token if profile exists
+                    if defaults.object(forKey: "token") != nil
+                    {
+                        if defaults.object(forKey: "id") != nil
+                        {
+                            print("CHECKING DEFAULTS RETURNS TRUE ##!!!!!")
+                            self.socketData.emit("auth:import_auth", with:  [ "id" : defaults.string(forKey: "id")!, "token" : defaults.string(forKey: "token")!]  )
+
+                        }
+                    }
+                }
+                
+            })
+            
             // if you are already loggined socket
             self.socketData.on("auth:import_auth", callback: { (data, ack) in
                 
                 print("GOT ANSWER ON IMPORT AUTH")
                 
                 let b = data as!  [Dictionary<String, AnyObject>]
-                let user = b[0]["user"] as!  Dictionary<String, Any>
+                
                 
                 if b[0]["res"] as! Int == 0
                 {
+                    let user = b[0]["user"] as!  Dictionary<String, Any>
                     defaults.set(user["id"], forKey: "id")
                     defaults.set(user["token"], forKey: "token")
                     defaults.set(user["nickname"], forKey: "nickname")
                     
-                    self.show_error = false
+                    
                     self.success_auth = true
                 }
                 else
                 {
                     print("ERROR IN IMPORTING AUTH")
-                    self.show_error = true
+                    
                 }
             })
             
-            // id token if profile exists
-            if defaults.object(forKey: "token") != nil
-            {
-                if defaults.object(forKey: "id") != nil
-                {
-                    print("CHECKING DEFAULTS RETURNS TRUE ##!!!!!")
-                    self.socketData.emit("auth:import_auth", with:  [ "id" : defaults.string(forKey: "id")!, "token" : defaults.string(forKey: "token")!]  )
-
-                }
-            }
+            
             
 
             // REGISTRATION SERVER SOCKET
@@ -326,12 +341,13 @@ struct InputFieldView: View{
                 .padding(.leading, 64)
                 .padding(.trailing, 32)
                 .padding(.bottom, 4)
+                    .opacity(0.7)
                 }
             }
             
         }.overlay(
             RoundedRectangle(cornerRadius: 5)
-                .stroke(Color.primary . opacity(0.2), lineWidth: 1)
+                .stroke(Color.primary . opacity(0.1), lineWidth: 1)
                 .padding(.leading, 16)
                 .padding(.trailing, 16)
         )
@@ -356,8 +372,8 @@ struct LogoView: View {
                 Text("N")
                     .bold()
                     .foregroundColor((maincolor))
-                    .font(.system(size: 45))
-                    .padding(.bottom, 8)
+                    .font(.system(size: 30))
+                    .padding(.bottom, 0)
             }.frame(height: 45)
             
             VStack {

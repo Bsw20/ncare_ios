@@ -32,7 +32,9 @@ class Socket: ObservableObject {
         
     }
     
-    
+    func on(clientEvent event: SocketClientEvent, callback: @escaping NormalCallback) -> UUID {
+        socket.on(event.rawValue, callback: callback)
+    }
     
     func on(_ event: String, callback: @escaping NormalCallback) {
         socket.on(event, callback: callback)

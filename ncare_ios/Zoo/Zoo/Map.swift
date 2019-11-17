@@ -52,11 +52,12 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     
   self.view.addSubview(mapView)
   
-  searchBar = UISearchBar(frame: CGRect(x: 0, y: -30, width: mapWidth, height: 60))
+  searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: mapWidth, height: 60))
+    searchBar.placeholder = "Search address"
   searchBar.delegate = self
   self.view.addSubview(searchBar)
   
-    let button = UIButton(frame: CGRect(x: view.frame.size.width / 2 - 100, y: view.frame.size.height - 220, width: 200, height: 50))
+    let button = UIButton(frame: CGRect(x: view.frame.size.width / 2 - 100, y: view.frame.size.height - 150, width: 200, height: 50))
     button.backgroundColor = .black
     button.alpha = 0.2
     button.layer.cornerRadius = 15
@@ -70,7 +71,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let uilpgr = UILongPressGestureRecognizer(target: self, action: #selector(longpress(gestureRecognizer:)))
 
-            uilpgr.minimumPressDuration = 1.5
+    uilpgr.minimumPressDuration = 0.5
 
             mapView.addGestureRecognizer(uilpgr)
 
@@ -121,6 +122,12 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             print(location)
         
         convertLatLongToAddress(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let defaults = UserDefaults.standard
+        defaults.set(location.coordinate.latitude, forKey: "latitude")
+        defaults.set(location.coordinate.longitude, forKey: "longitude")
+        print(location.coordinate.latitude.description)
+        print(defaults.string(forKey: "latitude"))
+        
         
             var title = ""
 
