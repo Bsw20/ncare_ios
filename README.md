@@ -1,4 +1,4 @@
-# NATURE CARE app from Moscow ZooHachathon by American Ambessy.
+# NATURE CARE app from Moscow ZooHachathon by American Embassy.
 
 ![brochure](https://sun9-47.userapi.com/c858320/v858320810/f89c9/tO-gTB-QXBc.jpg)
 
